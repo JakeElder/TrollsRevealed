@@ -1,0 +1,4 @@
+{
+  "vendor": ["ender/ender"],
+  "app": ["behaviour"]
+}

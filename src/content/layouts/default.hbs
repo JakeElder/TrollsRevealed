@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ package.title }}</title>
+  {{#if production}}
+    <link rel="stylesheet" href="style.css">
+  {{else}}
+    {{#each stylesheets}}
+      <link rel="stylesheet" href="assets/css/{{ this }}.css">
+    {{/each}}
+  {{/if}}
+</head>
+<body>
+  {{> body}}
+  {{#if production}}
+    <script src="behaviour.js"></script>
+  {{else}}
+    {{#each javascripts}}
+      <script src="assets/js/{{ this }}.js"></script>
+    {{/each}}
+  {{/if}}
+</body>
+</html>
