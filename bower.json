@@ -1,0 +1,9 @@
+{
+  "name": "trolls_revealed",
+  "version": "0.0.0",
+  "devDependencies": {
+    "html5shiv": "git://github.com/aFarkas/html5shiv.git#~3.6.2",
+    "reset-css": "git://github.com/shannonmoeller/reset-css.git#~2.0.20110126",
+    "jquery": "~1"
+  }
+}

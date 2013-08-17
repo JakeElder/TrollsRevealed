@@ -5,7 +5,7 @@ component: javascripts
   <script src="behaviour.js"></script>
 {{else}}
   {{#each javascripts.vendor}}
-    <script src="assets/js/vendor/{{ this }}.js"></script>
+    <script src="vendor/{{ this }}.js"></script>
   {{/each}}
   {{#each javascripts.app}}
     <script src="assets/js/{{ this }}.js"></script>

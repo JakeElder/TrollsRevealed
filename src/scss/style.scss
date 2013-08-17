@@ -1,5 +1,10 @@
 @import "fonts";
 
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$opacity*100})";
+}
+
 html, body {
   min-height: 100%;
 }
@@ -46,33 +51,34 @@ header {
   .title {
     display: block;
     position: relative;
-    left: -12px;
     margin-bottom: 12px;
   }
   nav {
-    font-size: 2rem;
+    overflow: hidden;
+    font-size: 32px;
     a {
-      margin-right: 1rem;
-      opacity: .4;
+      margin-right: 16px;
+      @include opacity(.4);
+      float: left;
       &.active, &:hover {
-        opacity: 1;
+         @include opacity(1);
       }
     }
   }
 }
 
 .social_media {
-  position: absolute;
+  position: fixed;
   bottom: 40px;
   left: 40px;
   overflow: hidden;
   a {
-    opacity: .7;
+    @include opacity(.7);
     float: left;
     margin-right: 8px;
     img { vertical-align: top; }
     &:hover {
-      opacity: 1;
+       @include opacity(1);
     }
   }
 }

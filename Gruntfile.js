@@ -17,7 +17,7 @@ module.exports = function(grunt) {
       var stylesheets = [];
       var json = grunt.file.readJSON('src/content/data/stylesheets.json')
       json.vendor.forEach(function (stylesheet) {
-        stylesheets.push('vendor/assets/css/' + stylesheet + '.css')
+        stylesheets.push('bower_components/' + stylesheet + '.css')
       });
       json.app.forEach(function (stylesheet) {
         stylesheets.push('.tmp/css/' + stylesheet + '.css')
@@ -29,7 +29,7 @@ module.exports = function(grunt) {
       var javascripts = [];
       var json = grunt.file.readJSON('src/content/data/javascripts.json')
       json.vendor.forEach(function (javascript) {
-        javascripts.push('vendor/assets/js/' + javascript + '.js')
+        javascripts.push('bower_components/' + javascript + '.js')
       });
       json.app.forEach(function (javascript) {
         javascripts.push('.tmp/js/' + javascript + '.js')
@@ -77,7 +77,10 @@ module.exports = function(grunt) {
         expand: true,
         cwd: 'src/content/documents',
         src: '**/*.hbs',
-        dest: '.tmp'
+        dest: '.tmp',
+        options: {
+          assets: ''
+        }
       },
       production: {
         options: {
@@ -111,15 +114,7 @@ module.exports = function(grunt) {
     },
 
     clean: {
-      dev: '.tmp',
-      ender: 'vendor/js/ender'
-    },
-
-    ender: {
-      options: {
-        output: 'vendor/js/ender/ender',
-        dependencies: 'jeesh'
-      }
+      dev: '.tmp'
     },
 
     coffee: {
@@ -153,37 +148,39 @@ module.exports = function(grunt) {
 
     symlink: {
       scss: {
-        dest: '.tmp/assets/scss',
-        src: 'src/scss'
+        src: 'src/scss',
+        dest: '.tmp/assets/scss'
       },
       coffee: {
-        dest: '.tmp/assets/coffee',
-        src: 'src/coffee'
+        src: 'src/coffee',
+        dest: '.tmp/assets/coffee'
       },
-      vendor_css: {
-        dest: '.tmp/assets/css/vendor',
-        src: 'vendor/assets/css'
-      },
-      vendor_js: {
-        dest: '.tmp/assets/js/vendor',
-        src: 'vendor/assets/js'
+      vendor_assets: {
+        src: 'bower_components',
+        dest: '.tmp/assets/vendor'
       },
       fonts: {
-        dest: '.tmp/assets/fonts',
-        src: 'src/fonts'
+        src: 'src/fonts',
+        dest: '.tmp/assets/fonts'
       },
       images: {
-        dest: '.tmp/assets/images',
-        src: 'src/img'
+        src: 'src/images',
+        dest: '.tmp/assets/images'
       }
     },
 
     copy: {
-      vendor_js: {
+      assets: {
         expand: true,
-        cwd: 'vendor/assets/js',
-        src: '**/*.js',
-        dest: '.tmp/assets/js/vendor'
+        cwd: 'src',
+        src: ['images/**', 'fonts/**'],
+        dest: '../build'
+      },
+      html5shiv: {
+        expand: true,
+        cwd: 'bower_components/html5shiv/dist',
+        src: 'html5shiv.js',
+        dest: '../build'
       }
     },
 
@@ -198,10 +195,24 @@ module.exports = function(grunt) {
     uglify: {
       production: {
         files: {
-          '../build/behaviour.js': '<%= buildStylesheets %>'
+          '../build/behaviour.js': '<%= buildJavascripts %>'
         }
       }
     },
+
+    replace: {
+      production: {
+        src: ['.tmp/css/*.css', '../build/**/*.html'],
+        overwrite: true,
+        replacements: [{
+          from: '/assets',
+          to: ''
+        }, {
+          from: '/vendor/html5shiv/src/html5shiv.js',
+          to: 'html5shiv.js'
+        }]
+      }
+    }
 
   });
 
@@ -224,10 +235,13 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
+    'clean:dev',
     'assemble:production',
     'sass:production',
     'coffee:production',
+    'replace',
     'cssmin',
-    'uglify'
+    'uglify',
+    'copy',
   ]);
 };

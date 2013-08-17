@@ -1,4 +1,8 @@
 {
-  "vendor": ["ender/ender"],
-  "app": ["behaviour"]
+  "vendor": [
+    "jquery/jquery"
+  ],
+  "app": [
+    "behaviour"
+  ]
 }

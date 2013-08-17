@@ -1,6 +1,6 @@
 {
   "vendor": [
-    "reset"
+    "reset-css/reset"
   ],
   "app": [
     "style"
