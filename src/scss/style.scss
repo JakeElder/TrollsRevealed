@@ -7,6 +7,7 @@ html, body {
 a {
   color: #fff;
   text-decoration: none;
+  transition: opacity .2s;
 }
 
 body {
@@ -21,39 +22,57 @@ body {
   color: #fff;
   font-family: "solomon_normal";
   margin: {
-    bottom: 2.5rem;
-    top: 2.5rem;
+    bottom: 104px;
+    top: 40px;
   }
 }
 
 #troll_img {
   position: fixed;
-  right: 2.5rem;
+  right: 30px;
   bottom: 0;
 }
 
 .container {
-  margin-left: 2rem;
+  position: relative;
+  margin: {
+    left: 40px;
+    right: 345px;
+  }
 }
 
 header {
-
+  margin-bottom: 50px;
   .title {
     display: block;
-    margin-bottom: 1rem;
+    position: relative;
+    left: -12px;
+    margin-bottom: 12px;
   }
-
   nav {
     font-size: 2rem;
-    margin-left: 12px;
-
     a {
       margin-right: 1rem;
       opacity: .4;
-      &.active {
+      &.active, &:hover {
         opacity: 1;
       }
     }
   }
+}
 
+.social_media {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  overflow: hidden;
+  a {
+    opacity: .7;
+    float: left;
+    margin-right: 8px;
+    img { vertical-align: top; }
+    &:hover {
+      opacity: 1;
+    }
+  }
 }

@@ -3,40 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>{{ package.title }}</title>
-  {{#if production}}
-    <link rel="stylesheet" href="style.css">
-  {{else}}
-    {{#each stylesheets.vendor}}
-      <link rel="stylesheet" href="assets/css/vendor/{{ this }}.css">
-    {{/each}}
-    {{#each stylesheets.app}}
-      <link rel="stylesheet" href="assets/css/{{ this }}.css">
-    {{/each}}
-  {{/if}}
+  {{> stylesheets}}
 </head>
 <body>
 
-  <div class="container">
-    <header>
-      <img class="title" src="/assets/images/text/heading-trolls_revealed@2x.png" alt="Trolls revealed" width="574" height="57">
-      <nav>
-        <a class="active" href="#">home</a>
-        <a href="#">about</a>
-        <a href="#">contact</a>
-      </nav>
-    </header>
-  </div>
-  {{> body}}
-  {{#if production}}
-    <script src="behaviour.js"></script>
-  {{else}}
-    {{#each javascripts.vendor}}
-      <script src="assets/js/vendor/{{ this }}.js"></script>
-    {{/each}}
-    {{#each javascripts.app}}
-      <script src="assets/js/{{ this }}.js"></script>
-    {{/each}}
-  {{/if}}
+  {{> social_media_links}}
   <img id="troll_img" src="/assets/images/troll.png" alt="Troll" width="345">
+
+  <div class="container">
+    {{> header}}
+    {{> body}}
+  </div>
+
+  {{> javascripts}}
+  
 </body>
 </html>

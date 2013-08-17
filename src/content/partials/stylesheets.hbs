@@ -1,0 +1,13 @@
+---
+component: stylesheets
+---
+{{#if production}}
+  <link rel="stylesheet" href="style.css">
+{{else}}
+  {{#each stylesheets.vendor}}
+    <link rel="stylesheet" href="assets/css/vendor/{{ this }}.css">
+  {{/each}}
+  {{#each stylesheets.app}}
+    <link rel="stylesheet" href="assets/css/{{ this }}.css">
+  {{/each}}
+{{/if}}
