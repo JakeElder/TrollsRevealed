@@ -61,12 +61,6 @@ module.exports = function(grunt) {
       content: {
         files: 'src/content/**/*.{hbs,json}',
         tasks: 'assemble:dev'
-      },
-      dev: {
-        files: '.tmp/**/*.{html,css,js}',
-        options: {
-          livereload: true
-        }
       }
     },
 
@@ -173,6 +167,14 @@ module.exports = function(grunt) {
       vendor_js: {
         dest: '.tmp/assets/js/vendor',
         src: 'vendor/assets/js'
+      },
+      fonts: {
+        dest: '.tmp/assets/fonts',
+        src: 'src/fonts'
+      },
+      images: {
+        dest: '.tmp/assets/images',
+        src: 'src/img'
       }
     },
 

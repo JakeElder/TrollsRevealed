@@ -1,1 +1,59 @@
 @import "fonts";
+
+html, body {
+  min-height: 100%;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+body {
+  background: {
+    attachment: fixed;
+    color: #000;
+    image: url(/assets/images/bg_grunge.jpg);
+    position: center center;
+    repeat: no-repeat;
+    size: cover;
+  }
+  color: #fff;
+  font-family: "solomon_normal";
+  margin: {
+    bottom: 2.5rem;
+    top: 2.5rem;
+  }
+}
+
+#troll_img {
+  position: fixed;
+  right: 2.5rem;
+  bottom: 0;
+}
+
+.container {
+  margin-left: 2rem;
+}
+
+header {
+
+  .title {
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  nav {
+    font-size: 2rem;
+    margin-left: 12px;
+
+    a {
+      margin-right: 1rem;
+      opacity: .4;
+      &.active {
+        opacity: 1;
+      }
+    }
+  }
+
+}
