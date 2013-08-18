@@ -2,12 +2,12 @@
 component: javascripts
 ---
 {{#if production}}
-  <script src="behaviour.js"></script>
+  <script src="/TrollsRevealed/behaviour.js"></script>
 {{else}}
   {{#each javascripts.vendor}}
-    <script src="vendor/{{ this }}.js"></script>
+    <script src="/assets/vendor/{{ this }}.js"></script>
   {{/each}}
   {{#each javascripts.app}}
-    <script src="assets/js/{{ this }}.js"></script>
+    <script src="/assets/js/{{ this }}.js"></script>
   {{/each}}
 {{/if}}

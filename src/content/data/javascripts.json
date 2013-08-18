@@ -1,6 +1,8 @@
 {
   "vendor": [
-    "jquery/jquery"
+  "lodash/lodash",
+    "jquery/jquery",
+    "backbone-events/backbone-events"
   ],
   "app": [
     "behaviour"

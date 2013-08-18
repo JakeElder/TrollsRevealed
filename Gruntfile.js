@@ -32,7 +32,7 @@ module.exports = function(grunt) {
         javascripts.push('bower_components/' + javascript + '.js')
       });
       json.app.forEach(function (javascript) {
-        javascripts.push('.tmp/js/' + javascript + '.js')
+        javascripts.push('.tmp/' + javascript + '.js')
       });
       return javascripts;
     }()),
@@ -181,6 +181,12 @@ module.exports = function(grunt) {
         cwd: 'bower_components/html5shiv/dist',
         src: 'html5shiv.js',
         dest: '../build'
+      },
+      cname: {
+        expand: true,
+        cwd: 'src',
+        src: 'CNAME',
+        dest: '../build'
       }
     },
 
@@ -205,11 +211,11 @@ module.exports = function(grunt) {
         src: ['.tmp/css/*.css', '../build/**/*.html'],
         overwrite: true,
         replacements: [{
-          from: '/assets',
-          to: ''
+          from: '/assets/vendor/html5shiv/src/html5shiv.js',
+          to: '/TrollsRevealed/html5shiv.js'
         }, {
-          from: '/vendor/html5shiv/src/html5shiv.js',
-          to: 'html5shiv.js'
+          from: '/assets',
+          to: '/TrollsRevealed'
         }]
       }
     }
