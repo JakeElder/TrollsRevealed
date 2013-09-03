@@ -212,10 +212,10 @@ module.exports = function(grunt) {
         overwrite: true,
         replacements: [{
           from: '/assets/vendor/html5shiv/src/html5shiv.js',
-          to: '/TrollsRevealed/html5shiv.js'
+          to: '/html5shiv.js'
         }, {
-          from: '/assets',
-          to: '/TrollsRevealed'
+          from: '/assets/',
+          to: '/'
         }]
       }
     }

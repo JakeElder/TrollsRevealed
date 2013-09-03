@@ -5,6 +5,10 @@
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$opacity*100})";
 }
 
+html {
+  overflow-y: scroll;
+}
+
 html, body {
   min-height: 100%;
 }
@@ -13,6 +17,7 @@ body {
   background: {
     attachment: fixed;
     color: #222;
+    image: url(/assets/images/bg_grunge.jpg);
     position: center center;
     repeat: no-repeat;
     size: cover;
@@ -21,12 +26,11 @@ body {
   font-family: "solomon";
   font-size: 17px;
   margin: {
-    bottom: 124px;
+    bottom: 40px;
     top: 40px;
   }
-
-  &.bg {
-    background-image: url(/assets/images/bg_grunge.jpg);
+  &.nobg {
+    background-image: none;
   }
 }
 
@@ -78,11 +82,10 @@ iframe {
 }
 
 .container {
-  min-width: 574px;
-  max-width: 700px;
+  width: 650px;
   margin: {
-    left: 40px;
-    right: 345px;
+    left: auto;
+    right: auto;
   }
   position: relative;
 }
@@ -106,15 +109,17 @@ header {
 }
 
 .social_media {
-  bottom: 40px;
-  left: 40px;
+  margin-top: 40px;
   overflow: hidden;
-  position: fixed;
   a {
     float: left;
     margin-right: 8px;
     img { vertical-align: top; }
   }
+}
+
+.contact .social_media {
+  display: none;
 }
 
 .section {
@@ -140,7 +145,7 @@ header {
         position: relative;
         top: -1px;
       }
-      span {vertical-align: middle; }
+      span { vertical-align: middle; }
     }
   }
 }
