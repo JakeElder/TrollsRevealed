@@ -13,8 +13,9 @@ $('body').addClass('nobg') if window.location.search.match('nobg')
 # Video wrapper
 Video = ->
 
-  @play = _.bind @play, @
-  @pause = _.bind @pause, @
+  @_handle_message = _.bind @_handle_message, @
+  @play            = _.bind @play, @
+  @pause           = _.bind @pause, @
 
   @_url = 'http://player.vimeo.com'
   @_bind_event_listeners()
@@ -32,13 +33,36 @@ _.extend Video.prototype,
     @_window.postMessage('{"method": "play"}', @_url)
   
   _bind_event_listeners: ->
-    root.addEventListener('message', @play) if root.addEventListener
-    root.attachEvent('onmessage', @play) if root.attachEvent
+    root.addEventListener('message', @_handle_message) if root.addEventListener
+    root.attachEvent('onmessage', @_handle_message) if root.attachEvent
+
+  _on_finish: ->
+    $('body').removeClass('video_playing')
+
+  _on_ready: ->
+    @_window.postMessage('{"method": "addEventListener", "value": "play"}', @_url)
+    @_window.postMessage('{"method": "addEventListener", "value": "pause"}', @_url)
+    @_window.postMessage('{"method": "addEventListener", "value": "finish"}', @_url)
+    @play()
+
+  _on_pause: ->
+    $('body').removeClass('video_playing')
+
+  _on_play: ->
+    $('body').addClass('video_playing')
+
+  _parse_json: (json_string) ->
+    return JSON.parse(json_string) if JSON && JSON.parse
+    return eval("new Object(#{json_string})")
+
+  _handle_message: (e) ->
+    e = @_parse_json(e.data)
+    @["_on_#{e.event}"]() if typeof @["_on_#{e.event}"] == 'function'
 
   _insert_video: ->
     $('#video_placeholder').replaceWith("""
       <iframe
-        src="#{@_url}/video/54854735?api=1"
+        src="#{@_url}/video/73785345?api=1"
         width="650"
         height="365"
         frameborder="0"
